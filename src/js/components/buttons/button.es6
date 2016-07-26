@@ -13,7 +13,8 @@ export default React.createClass({
    disabled: Type.bool,
    link: Type.bool,
    extraClasses: Type.arrayOf(Type.string),
-   icon: Type.string
+   icon: Type.string,
+   onClick: Type.func,
   },
 
   getDefaultProps: function() {
@@ -58,6 +59,19 @@ export default React.createClass({
   },
 
   render() {
-    return <button {...this.props} className={ this.classes() } disabled={ this.props.disabled }>{ this.props.label }</button>;
+    const {
+      label,
+      disabled,
+      onClick,
+      type
+    } = this.props;
+
+    return <button
+      className={ this.classes() }
+      disabled={ disabled }
+      label={ label }
+      onClick={ onClick }
+      type={ type }
+    >{ this.props.label }</button>;
   }
 });

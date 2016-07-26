@@ -1,12 +1,11 @@
-import React from 'react/addons';
+import React from 'react';
 
 const {
   createClass,
   PropTypes : Type,
-  Children
+  Children,
+  cloneElement
 } = React;
-
-const { cloneWithProps } = React.addons;
 
 export default createClass({
 
@@ -32,7 +31,7 @@ export default createClass({
 
   _showPop() {
     const { posX, posY } = this.state;
-    const baseNode = this.refs.child0.getDOMNode().getBoundingClientRect();
+    const baseNode = this.refs.child0.getBoundingClientRect();
     const baseWidth = baseNode.width;
     const posXLen = (baseWidth / 2) + 5;
 
@@ -60,7 +59,7 @@ export default createClass({
     if (open) {
       this.setState({ open: false });
     } else {
-      const node = this.refs.popContainer.getDOMNode().getBoundingClientRect();
+      const node = this.refs.popContainer.getBoundingClientRect();
       const nodeBottom = node.bottom;
       const nodeRight = node.right;
       const windowHeight = window.innerHeight;
@@ -83,7 +82,7 @@ export default createClass({
   render() {
     let index = 0;
     const children = Children.map(this.props.children, (child) => {
-      return cloneWithProps(child, {
+      return cloneElement(child, {
        ref: `child${index++}`
       });
     });
@@ -92,7 +91,7 @@ export default createClass({
 
     return (
       <div className="relative" ref="popContainer" >
-        <div onClick={this._togglePop} >{this._children[".0"]}</div>
+        <div onClick={this._togglePop} >{this._children[0]}</div>
         {this.state.open ? this._showPop() : void 0}
       </div>
     );

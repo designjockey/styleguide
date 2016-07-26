@@ -1,6 +1,7 @@
 import { expect } from 'chai';
-import TestUtils from 'react/lib/ReactTestUtils';
+import TestUtils from 'react-addons-test-utils';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Icon from 'misc/icon';
 import Sinon from 'sinon';
 
@@ -21,7 +22,7 @@ describe('Icon', () => {
     component = TestUtils.renderIntoDocument(
       <Icon {...props} />
     );
-    icon = React.findDOMNode(component);
+    icon = ReactDOM.findDOMNode(component);
   })
 
   it('can render a component', () => {
@@ -39,12 +40,12 @@ describe('Icon', () => {
   });
 
   it('applies the fontSize prop as an inline style', () => {
-    let inlineStyles = icon.getAttribute('style');
+    let inlineStyles = icon.getAttribute('style').replace(/ /g, '');
     expect(inlineStyles).to.contain(`font-size:${props.size}px;`);
   });
 
   it('applies the top prop as an inline style', () => {
-    let inlineStyles = icon.getAttribute('style');
+    let inlineStyles = icon.getAttribute('style').replace(/ /g, '');
     expect(inlineStyles).to.contain(`top:${props.top}px;`);
   });
 
@@ -52,5 +53,4 @@ describe('Icon', () => {
     TestUtils.Simulate.click(icon);
     expect(callback.called).to.be.true;
   });
-
 });

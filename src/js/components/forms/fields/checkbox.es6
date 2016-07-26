@@ -20,7 +20,7 @@ class CheckboxField extends FieldBase {
 
   onChange() {
     const values = [];
-    const fieldset = React.findDOMNode(this.refs.fieldset);
+    const fieldset = this.refs.fieldset;
     const elements = this.getElements(fieldset);
 
     for (let i = 0, len = elements.length; i < len; i++) {
@@ -61,7 +61,7 @@ class CheckboxField extends FieldBase {
 
     return (
       <label key={`${value}-${index}`} className="block py1">
-        <input 
+        <input
           checked={readOnly ? defaultValue.includes(value) : null}
           defaultChecked={!readOnly && defaultValue.includes(value)}
           readOnly={readOnly}
@@ -88,11 +88,12 @@ class CheckboxField extends FieldBase {
   }
 
   contents() {
-    const spreadProps = omit(this.props, 'onChange');
+    //TODO: remove `spreadProps` pattern
+    const spreadProps = omit(this.props, 'onChange', 'extraClasses', 'options', 'errors');
 
     return (
-      <fieldset 
-        id={this.props.name} 
+      <fieldset
+        id={this.props.name}
         onChange={this.onChange}
         ref="fieldset"
         {...spreadProps}

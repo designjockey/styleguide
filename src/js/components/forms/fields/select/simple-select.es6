@@ -29,7 +29,7 @@ export default React.createClass({
   getInitialState() {
     return {
       show_options: false,
-      value: this._parseValueFromProps() || null
+      value: this._parseValueFromProps() || ''
     };
   },
 
@@ -73,7 +73,7 @@ export default React.createClass({
 
   onClickOptionEmpty() {
     this.setState({
-      value: null,
+      value: '',
       show_options: false
     });
     this.refs.container.hide();
@@ -159,7 +159,7 @@ export default React.createClass({
     let arrowStyle = {top: 1, right: 3, fontSize: '12px', height: '19px'};
 
     return (
-      <div ref='simpleSelectValue' className={this.valueClasses()} onClick={this.onClickValue}>
+      <div key="simpleselectvalue" ref='simpleSelectValue' className={this.valueClasses()} onClick={this.onClickValue}>
         <div className='nowrap mr1'>
           {value ? value : this.props.placeholder}
         </div>
@@ -209,6 +209,7 @@ export default React.createClass({
   render() {
     return this.renderContainer(
           <input type="hidden"
+                 key="hidden"
                  name={this.props.name}
                  value={this.state.value}
                  disabled={this.props.disabled} />,

@@ -1,6 +1,7 @@
 import { expect } from 'chai';
-import TestUtils from 'react/lib/ReactTestUtils';
+import TestUtils from 'react-addons-test-utils';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import SimpleSelect from 'forms/fields/select/simple-select';
 import Sinon from 'sinon';
 import triggerRawClick from '../../../test_helpers/trigger_raw_click';
@@ -15,7 +16,7 @@ describe('SimpleSelect', () => {
     beforeEach(() => {
       callback = Sinon.spy();
       simple_select = TestUtils.renderIntoDocument(<SimpleSelect onChange={callback} value={'one'} options={['one','two']}/>);
-      TestUtils.Simulate.click(React.findDOMNode(simple_select.refs.container));
+      TestUtils.Simulate.click(ReactDOM.findDOMNode(simple_select.refs.container));
       options = TestUtils.scryRenderedDOMComponentsWithClass(simple_select, 'simple-select-option');
     });
 
@@ -39,7 +40,7 @@ describe('SimpleSelect', () => {
       expect(simple_select.state.show_options).to.be.true;
 
       simple_select = TestUtils.renderIntoDocument(<SimpleSelect />);
-      TestUtils.Simulate.click(React.findDOMNode(simple_select.refs.container));
+      TestUtils.Simulate.click(ReactDOM.findDOMNode(simple_select.refs.container));
       TestUtils.Simulate.click(simple_select.refs.simpleSelectValue);
       expect(simple_select.state.show_options).to.be.false;
     });
@@ -87,7 +88,7 @@ describe('SimpleSelect', () => {
     });
 
     it('includes the correct gray if state.show_options is true', () => {
-      TestUtils.Simulate.click(React.findDOMNode(simple_select.refs.container));
+      TestUtils.Simulate.click(ReactDOM.findDOMNode(simple_select.refs.container));
       expect(simple_select.optionsClasses()).to.include('bc-grey-50');
       expect(simple_select.optionsClasses()).to.not.include('bc-grey-25');
     });
@@ -111,7 +112,7 @@ describe('SimpleSelect', () => {
 
     beforeEach(() => {
       simple_select = TestUtils.renderIntoDocument(<SimpleSelect options={options_object} />);
-      TestUtils.Simulate.click(React.findDOMNode(simple_select.refs.container));
+      TestUtils.Simulate.click(ReactDOM.findDOMNode(simple_select.refs.container));
       let options = TestUtils.scryRenderedDOMComponentsWithClass(simple_select, 'simple-select-option');
       TestUtils.Simulate.click(options[0]);
     });
@@ -131,13 +132,13 @@ describe('SimpleSelect', () => {
 
     beforeEach(() => {
       simple_select = TestUtils.renderIntoDocument(<SimpleSelect options={options_object} includeBlank={true} />);
-      TestUtils.Simulate.click(React.findDOMNode(simple_select.refs.container));
+      TestUtils.Simulate.click(ReactDOM.findDOMNode(simple_select.refs.container));
       let options = TestUtils.scryRenderedDOMComponentsWithClass(simple_select, 'simple-select-option');
       TestUtils.Simulate.click(options[0]);
     });
 
-    it('sets state.value to null', () => {
-      expect(simple_select.state.value).to.be.null;
+    it('sets state.value to empty string', () => {
+      expect(simple_select.state.value).to.eql('');
     });
 
     it('sets state.show_options back to false', () => {
@@ -147,21 +148,21 @@ describe('SimpleSelect', () => {
 
   it('expects one option element for each option given in an options array', () => {
     let simple_select = TestUtils.renderIntoDocument(<SimpleSelect options={['one','two']}/>);
-    TestUtils.Simulate.click(React.findDOMNode(simple_select.refs.container));
+    TestUtils.Simulate.click(ReactDOM.findDOMNode(simple_select.refs.container));
     let options = TestUtils.scryRenderedDOMComponentsWithClass(simple_select, 'simple-select-option');
     expect(options.length).to.equal(2);
   });
 
   it('expects one option element for each option given in an options object', () => {
     let simple_select = TestUtils.renderIntoDocument(<SimpleSelect options={{123: 'one', 456: 'two'}}/>);
-    TestUtils.Simulate.click(React.findDOMNode(simple_select.refs.container));
+    TestUtils.Simulate.click(ReactDOM.findDOMNode(simple_select.refs.container));
     let options = TestUtils.scryRenderedDOMComponentsWithClass(simple_select, 'simple-select-option');
     expect(options.length).to.equal(2);
   });
 
   it('expects an empty option if includeBlank is true', () => {
     let simple_select = TestUtils.renderIntoDocument(<SimpleSelect includeBlank={true} />);
-    TestUtils.Simulate.click(React.findDOMNode(simple_select.refs.container));
+    TestUtils.Simulate.click(ReactDOM.findDOMNode(simple_select.refs.container));
     let option = TestUtils.scryRenderedDOMComponentsWithClass(simple_select, 'simple-select-option-empty');
     expect(option).to.exist;
   });
@@ -174,29 +175,29 @@ describe('SimpleSelect', () => {
 
   it('expects the value to change to the option that was clicked', () => {
     let simple_select = TestUtils.renderIntoDocument(<SimpleSelect options={['foo','bar']} value={'foo'}/>);
-    TestUtils.Simulate.click(React.findDOMNode(simple_select.refs.container));
+    TestUtils.Simulate.click(ReactDOM.findDOMNode(simple_select.refs.container));
     let options = TestUtils.scryRenderedDOMComponentsWithClass(simple_select, 'simple-select-option');
     TestUtils.Simulate.click(options[1]);
     expect(simple_select.state.value).to.equal('bar');
   });
 
-  it('sets the value to null when empty option is clicked', () => {
+  it('sets the value to empty string when empty option is clicked', () => {
     let simple_select = TestUtils.renderIntoDocument(<SimpleSelect includeBlank={true} options={['foo','bar']} value={'foo'}/>);
-    TestUtils.Simulate.click(React.findDOMNode(simple_select.refs.container));
+    TestUtils.Simulate.click(ReactDOM.findDOMNode(simple_select.refs.container));
     let options = TestUtils.scryRenderedDOMComponentsWithClass(simple_select, 'simple-select-option');
     TestUtils.Simulate.click(options[0]);
-    expect(simple_select.state.value).to.be.null;
+    expect(simple_select.state.value).to.eql('');
   });
 
-  it('sets the value to null when empty option is clicked', () => {
+  it('sets the value to empty string when empty option is clicked', () => {
     let simple_select = TestUtils.renderIntoDocument(<SimpleSelect includeBlank={true} options={['foo','bar']} value={'foo'}/>);
-    TestUtils.Simulate.click(React.findDOMNode(simple_select.refs.container));
+    TestUtils.Simulate.click(ReactDOM.findDOMNode(simple_select.refs.container));
     let options = TestUtils.scryRenderedDOMComponentsWithClass(simple_select, 'simple-select-option');
     TestUtils.Simulate.click(options[0]);
-    expect(simple_select.state.value).to.be.null;
+    expect(simple_select.state.value).to.eql('');
   });
 
-  it('sets the value to null when given value does not match any options', () => {
+  it('sets the value to empty string when given value does not match any options', () => {
     expect(
       TestUtils.renderIntoDocument(
         <SimpleSelect options={['foo','bar']} value={'bar'}/>
@@ -213,13 +214,13 @@ describe('SimpleSelect', () => {
       TestUtils.renderIntoDocument(
         <SimpleSelect options={['foo','bar']} value={'baz'}/>
       ).state.value
-    ).to.be.null;
+    ).to.eql('');
 
     expect(
       TestUtils.renderIntoDocument(
         <SimpleSelect options={{foo: 1, bar: 2}} value={'baz'}/>
       ).state.value
-    ).to.be.null;
+    ).to.be.eql('');
   });
 
   describe('when clicked on', () => {
@@ -239,7 +240,7 @@ describe('SimpleSelect', () => {
       TestUtils.Simulate.click(simple_select.refs.simpleSelectValue);
       expect(simple_select.state.show_options).to.be.true;
 
-      triggerRawClick(React.findDOMNode(simple_select).parentElement);
+      triggerRawClick(ReactDOM.findDOMNode(simple_select).parentElement);
       expect(simple_select.state.show_options).to.be.false;
     });
   });

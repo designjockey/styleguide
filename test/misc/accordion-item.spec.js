@@ -1,6 +1,7 @@
 import { expect } from 'chai';
-import TestUtils from 'react/lib/ReactTestUtils';
+import TestUtils from 'react-addons-test-utils';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import AccordionItem from 'misc/accordion-item';
 
 describe('AccordionItem', () => {
@@ -17,7 +18,7 @@ describe('AccordionItem', () => {
     component = TestUtils.renderIntoDocument(
       <AccordionItem {...props} />
     );
-    accordionItem = React.findDOMNode(component);
+    accordionItem = ReactDOM.findDOMNode(component);
   });
 
   it('can render a component', () => {
@@ -29,12 +30,12 @@ describe('AccordionItem', () => {
   });
 
   it('renders a header element with the right default classes', () => {
-    let accordionHeader = React.findDOMNode(component).querySelector('.pointer.flex.flex-center.py2');
+    let accordionHeader = ReactDOM.findDOMNode(component).querySelector('.pointer.flex.flex-center.py2');
     expect(accordionHeader).to.exist;
   });
 
   it('renders the title', () => {
-    let accordionHeader = React.findDOMNode(component).querySelector('.pointer');
+    let accordionHeader = ReactDOM.findDOMNode(component).querySelector('.pointer');
     expect(accordionHeader.innerHTML).to.contain(props.title);
   });
 
@@ -67,13 +68,13 @@ describe('AccordionItem', () => {
     });
 
     it('toggles to closed when clicked', () => {
-      let accordionHeader = React.findDOMNode(componentOpen).querySelector('.pointer');
+      let accordionHeader = ReactDOM.findDOMNode(componentOpen).querySelector('.pointer');
       TestUtils.Simulate.click(accordionHeader);
       expect(componentOpen.state.isOpen).to.be.false;
     });
 
     it('displays a blue Collapse icon when open', () => {
-      let icon = React.findDOMNode(componentOpen).querySelector('.mr1');
+      let icon = ReactDOM.findDOMNode(componentOpen).querySelector('.mr1');
       expect(icon.getAttribute('class')).to.contain('icon-collapse');
       expect(icon.getAttribute('class')).to.contain('blue-70');
     });
@@ -98,13 +99,13 @@ describe('AccordionItem', () => {
     });
 
     it('toggles to open when clicked', () => {
-      let accordionHeader = React.findDOMNode(componentClosed).querySelector('.pointer');
+      let accordionHeader = ReactDOM.findDOMNode(componentClosed).querySelector('.pointer');
       TestUtils.Simulate.click(accordionHeader);
       expect(componentClosed.state.isOpen).to.be.true;
     });
 
     it('displays a blue Expand icon when closed', () => {
-      let icon = React.findDOMNode(componentClosed).querySelector('.mr1');
+      let icon = ReactDOM.findDOMNode(componentClosed).querySelector('.mr1');
       expect(icon.getAttribute('class')).to.contain('icon-expand');
       expect(icon.getAttribute('class')).to.contain('blue-70');
     });
@@ -112,7 +113,7 @@ describe('AccordionItem', () => {
     it('wraps children in is-closed and overflow-hidden classes', () => {
       let child = TestUtils.findRenderedDOMComponentWithClass(componentClosed, 'is-closed');
       expect(child).to.exist;
-      expect(React.findDOMNode(child).getAttribute('class')).to.contain('overflow-hidden');
+      expect(ReactDOM.findDOMNode(child).getAttribute('class')).to.contain('overflow-hidden');
     });
   });
 });

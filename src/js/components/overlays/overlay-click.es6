@@ -1,6 +1,10 @@
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const Type = React.PropTypes;
+const { 
+  PropTypes: Type,
+  cloneElement
+ } = React;
 
 export default React.createClass({
 
@@ -40,24 +44,24 @@ export default React.createClass({
   },
 
   attachParentListener(e) {
-    this.findParent(React.findDOMNode(this)).addEventListener('click', this.handleDocumentClick);
+    this.findParent(ReactDOM.findDOMNode(this)).addEventListener('click', this.handleDocumentClick);
     this.show();
   },
 
   content() {
     if (this.state.isOpen) {
-      return React.cloneElement(this.props.content, {closeOverlay: this.hide});
+      return cloneElement(this.props.content);
     }
   },
 
   hide() {
     this.props.onClose();
     this.setState({isOpen: false});
-    this.findParent(React.findDOMNode(this)).removeEventListener('click', this.handleDocumentClick);
+    this.findParent(ReactDOM.findDOMNode(this)).removeEventListener('click', this.handleDocumentClick);
   },
 
   handleDocumentClick(e) {
-    let node = React.findDOMNode(this);
+    let node = ReactDOM.findDOMNode(this);
 
     if (node && node.contains(e.target)) {
       this.props.onClick();

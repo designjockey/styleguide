@@ -1,6 +1,7 @@
 import { expect } from 'chai';
-import TestUtils from 'react/lib/ReactTestUtils';
+import TestUtils from 'react-addons-test-utils';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Sinon from 'sinon';
 import triggerRawClick from '../test_helpers/trigger_raw_click';
 import Overlay from 'overlays/overlay-click';
@@ -37,9 +38,9 @@ describe('Overlay', () => {
 
       setTimeout(() => {
         try {
-          TestUtils.Simulate.click(React.findDOMNode(overlay));
+          TestUtils.Simulate.click(ReactDOM.findDOMNode(overlay));
           expect(overlay.state.isOpen).to.be.true;
-          triggerRawClick(React.findDOMNode(component).parentElement);
+          triggerRawClick(ReactDOM.findDOMNode(component).parentElement);
           expect(overlay.state.isOpen).to.be.false;
           done();
         } catch (e) {
@@ -57,9 +58,9 @@ describe('Overlay', () => {
 
       setTimeout(() => {
         try {
-          TestUtils.Simulate.click(React.findDOMNode(overlay));
+          TestUtils.Simulate.click(ReactDOM.findDOMNode(overlay));
           expect(overlay.state.isOpen).to.be.true;
-          triggerRawClick(React.findDOMNode(overlay));
+          triggerRawClick(ReactDOM.findDOMNode(overlay));
           expect(spy.called).to.be.true;
           done();
         } catch (e) {

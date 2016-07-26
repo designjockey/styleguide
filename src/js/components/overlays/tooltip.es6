@@ -1,7 +1,10 @@
-import React from 'react/addons';
+import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-const Type = React.PropTypes;
-const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+const {
+  PropTypes: Type,
+  cloneElement,
+} = React;
 
 const caretPositions = [
   "top-left", "top-center", "top-right",
@@ -11,7 +14,6 @@ const caretPositions = [
 ];
 
 export default React.createClass({
-
   displayName: "Tooltip",
 
   propTypes: {
@@ -99,11 +101,16 @@ export default React.createClass({
 
   render() {
     return (
-      <ReactCSSTransitionGroup transitionName={`anim-fade-${this.direction()}`}
-                               transitionAppear={true} >
+      <ReactCSSTransitionGroup 
+        transitionName={`anim-fade-${this.direction()}`}
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}
+      >
         <div className={this.classes()} style={this.style()}>
           <div className={this.triangleClasses() + ' absolute bc-blue-95 blue-95'}></div>
-          {React.cloneElement(this.props.content, {closeTooltip: this.props.closeOverlay})}
+          {cloneElement(this.props.content)}
           <div className="clearfix"></div>
         </div>
       </ReactCSSTransitionGroup>

@@ -55,24 +55,24 @@ export default React.createClass({
               <tr>
                 <th sortKey="name">First</th>
                 <th>Last</th>
-                <th sortKey="date" active={true}>Start Date</th>
+                <th sortKey="data-date" active={true}>Start Date</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td name="john">John</td>
                 <td>Smith</td>
-                <td date={2014}>2014-01-01</td>
+                <td data-date={2014}>2014-01-01</td>
               </tr>
               <tr>
                 <td name="chuck">Chuck</td>
                 <td>D</td>
-                <td date={2013}>2013-03-15</td>
+                <td data-date={2013}>2013-03-15</td>
               </tr>
               <tr>
                 <td name="flava">Flava</td>
                 <td>Flav</td>
-                <td date={2012}>2012-06-28</td>
+                <td data-date={2012}>2012-06-28</td>
               </tr>
             </tbody>
           </table>

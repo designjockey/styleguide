@@ -1,6 +1,7 @@
 import { expect } from 'chai';
-import TestUtils from 'react/lib/ReactTestUtils';
+import TestUtils from 'react-addons-test-utils';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import CheckboxField from 'forms/fields/checkbox';
 
 describe('CheckboxField', () => {
@@ -28,13 +29,13 @@ describe('CheckboxField', () => {
       expect(
         component.value()
       ).to.eql(['value2']);
-      
+
       expect(
-        React.findDOMNode(component).getElementsByTagName('input')[0].checked
+        ReactDOM.findDOMNode(component).getElementsByTagName('input')[0].checked
       ).to.be.false;
 
       expect(
-        React.findDOMNode(component).getElementsByTagName('input')[1].checked
+        ReactDOM.findDOMNode(component).getElementsByTagName('input')[1].checked
       ).to.be.true;
     });
 
@@ -53,21 +54,21 @@ describe('CheckboxField', () => {
       expect(
         component.value()
       ).to.eql(['value2']);
-      
+
       expect(
-        React.findDOMNode(component).getElementsByTagName('input')[0].checked
+        ReactDOM.findDOMNode(component).getElementsByTagName('input')[0].checked
       ).to.be.false;
 
       expect(
-        React.findDOMNode(component).querySelectorAll('span.label-right')[0].textContent
+        ReactDOM.findDOMNode(component).querySelectorAll('span.label-right')[0].textContent
       ).to.eql("some value");
 
       expect(
-        React.findDOMNode(component).getElementsByTagName('input')[1].checked
+        ReactDOM.findDOMNode(component).getElementsByTagName('input')[1].checked
       ).to.be.true;
 
       expect(
-        React.findDOMNode(component).querySelectorAll('span.label-right')[1].textContent
+        ReactDOM.findDOMNode(component).querySelectorAll('span.label-right')[1].textContent
       ).to.eql("another value");
     });
   });
@@ -87,7 +88,7 @@ describe('CheckboxField', () => {
         />
       );
 
-      const firstCheckbox = React.findDOMNode(component).getElementsByTagName('input')[0];
+      const firstCheckbox = ReactDOM.findDOMNode(component).getElementsByTagName('input')[0];
 
       firstCheckbox.checked = true;
       TestUtils.Simulate.change(firstCheckbox);
