@@ -99,7 +99,7 @@ describe('DateField', () => {
       setTimeout(() => {
         try {
           // click the first day of this month
-          const dayNode = TestUtils.scryRenderedDOMComponentsWithTag(firstDay, 'div')[1];
+          const dayNode = firstDay.children[0];
           TestUtils.Simulate.click(
             dayNode
           );
