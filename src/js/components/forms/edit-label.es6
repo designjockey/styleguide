@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Icon from '../misc/icon';
 import Popup from '../overlays/popup';
 import FieldErrors from './field-errors';
@@ -38,7 +37,7 @@ export default createClass({
   },
 
   _handleSave() {
-    const val = ReactDOM.findDOMNode(this.refs.labelInput).value;
+    const val = this.refs.labelInput.value;
 
     if ( this.props.isValid ) {
 

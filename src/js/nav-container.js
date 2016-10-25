@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import localLinks from 'local-links';
 
 import View from './components/view/view';
@@ -16,9 +15,8 @@ export default React.createClass({
   },
 
   makeActiveLink() {
-    let self = this;
     let pathname = window.location.pathname;
-    let navItems = ReactDOM.findDOMNode(self.refs.navList).querySelectorAll('.nav-item');
+    let navItems = this.refs.navList.querySelectorAll('.nav-item');
 
     for(let i = 0; i < navItems.length; i++) {
       let link = navItems.item(i).children.item(0);

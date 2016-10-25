@@ -1,6 +1,5 @@
 import assign from 'lodash.assign';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { fieldProps, FieldBase} from './base.es6';
 import omit from '../../utils/omit';
 
@@ -21,7 +20,7 @@ class CheckboxField extends FieldBase {
 
   onChange() {
     const values = [];
-    const fieldset = React.findDOMNode(this.refs.fieldset);
+    const fieldset = this.refs.fieldset;
     const elements = this.getElements(fieldset);
 
     for (let i = 0, len = elements.length; i < len; i++) {
