@@ -38,7 +38,7 @@ class NumberField extends FieldBase {
 
   contents() {
     // get all props except for onChange
-    const propsSpread = omit(this.props, 'onChange');
+    const propsSpread = omit(this.props, 'onChange', 'extraClasses', 'units', 'errors');
 
     return  (
       <div>

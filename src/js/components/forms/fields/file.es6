@@ -1,12 +1,11 @@
 import assign from 'lodash.assign';
 import React from 'react';
-import cloneWithProps from 'react-addons-clone-with-props';
 import { fieldProps, FieldBase} from './base.es6';
 import omit from '../../utils/omit';
 
 const {
   Children,
-  PropTypes : Type
+  PropTypes : Type,
 } = React;
 
 class FileField extends FieldBase {
@@ -45,7 +44,7 @@ class FileField extends FieldBase {
   }
 
   contents() {
-    const spreadProps = omit(this.props, 'onChange');
+    const spreadProps = omit(this.props, 'onChange', 'buttonClasses', 'buttonText', 'errors');
 
     if (this.state.previewing) {
       return (

@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import TestUtils from 'react/lib/ReactTestUtils';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Modal from 'overlays/modal';
 import Sinon from 'sinon';
 
@@ -20,8 +21,8 @@ describe('Modal', () => {
     component = TestUtils.renderIntoDocument(
       <Modal {...props} />
     );
-    modal = React.findDOMNode(component);
-  })
+    modal = ReactDOM.findDOMNode(component);
+  });
 
   it('renders successfully', () => {
     TestUtils.isElement(component);

@@ -62,8 +62,8 @@ class CheckboxField extends FieldBase {
     return (
       <label key={`${value}-${index}`} className="block py1">
         <input
-          checked={readOnly ? defaultValue.includes(value) : null}
-          defaultChecked={!readOnly && defaultValue.includes(value)}
+          checked={defaultValue.includes(value)}
+          defaultValue={defaultValue.includes(value)}
           readOnly={readOnly}
           type="checkbox"
           value={value}
@@ -88,7 +88,8 @@ class CheckboxField extends FieldBase {
   }
 
   contents() {
-    const spreadProps = omit(this.props, 'onChange');
+    //TODO: remove `spreadProps` pattern
+    const spreadProps = omit(this.props, 'onChange', 'extraClasses', 'options', 'errors');
 
     return (
       <fieldset

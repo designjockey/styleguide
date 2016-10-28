@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import TestUtils from 'react/lib/ReactTestUtils';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Button from 'buttons/button';
 import ButtonGroup from 'buttons/button-group';
 
@@ -21,7 +22,7 @@ describe('Button', () => {
     component = TestUtils.renderIntoDocument(
       <Button {...props} />
     );
-    button = React.findDOMNode(component);
+    button = ReactDOM.findDOMNode(component);
   })
 
   it('should output a button', () => {
