@@ -41,12 +41,12 @@ describe('Icon', () => {
 
   it('applies the fontSize prop as an inline style', () => {
     let inlineStyles = icon.getAttribute('style');
-    expect(inlineStyles).to.contain(`font-size:${props.size}px;`);
+    expect(inlineStyles).to.contain(`font-size: ${props.size}px;`);
   });
 
   it('applies the top prop as an inline style', () => {
     let inlineStyles = icon.getAttribute('style');
-    expect(inlineStyles).to.contain(`top:${props.top}px;`);
+    expect(inlineStyles).to.contain(`top: ${props.top}px;`);
   });
 
   it('fires the onClick prop when clicked', () => {
