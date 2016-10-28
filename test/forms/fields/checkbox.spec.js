@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import TestUtils from 'react/lib/ReactTestUtils';
+import TestUtils from 'react-addons-test-utils';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CheckboxField from 'forms/fields/checkbox';
@@ -54,7 +54,7 @@ describe('CheckboxField', () => {
       expect(
         component.value()
       ).to.eql(['value2']);
-      
+
       expect(
         ReactDOM.findDOMNode(component).getElementsByTagName('input')[0].checked
       ).to.be.false;

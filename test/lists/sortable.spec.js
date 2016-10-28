@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import Sinon from 'sinon';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TestUtils from 'react/lib/ReactTestUtils';
+import TestUtils from 'react-addons-test-utils';
 import Sortable from 'lists/sortable';
 
 describe('Sortable', () => {
@@ -45,7 +45,7 @@ describe('Sortable', () => {
     let rows = TestUtils.scryRenderedDOMComponentsWithTag(sortable, 'tr');
     expect(headers.length).to.eql(3);
     expect(rows.length).to.eql(4);
-    
+
     expect(rows[1].props.children.length).to.eql(3);
   });
 

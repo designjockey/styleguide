@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import TestUtils from 'react/lib/ReactTestUtils';
+import TestUtils from 'react-addons-test-utils';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'overlays/modal';
