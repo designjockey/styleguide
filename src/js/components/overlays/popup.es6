@@ -1,10 +1,10 @@
 import React from 'react';
-import cloneWithProps from 'react-addons-clone-with-props';
 
 const {
   createClass,
   PropTypes : Type,
-  Children
+  Children,
+  cloneElement
 } = React;
 
 export default createClass({
@@ -82,7 +82,7 @@ export default createClass({
   render() {
     let index = 0;
     const children = Children.map(this.props.children, (child) => {
-      return cloneWithProps(child, {
+      return cloneElement(child, {
        ref: `child${index++}`
       });
     });
@@ -91,7 +91,7 @@ export default createClass({
 
     return (
       <div className="relative" ref="popContainer" >
-        <div onClick={this._togglePop} >{this._children[".0"]}</div>
+        <div onClick={this._togglePop} >{this._children[0]}</div>
         {this.state.open ? this._showPop() : void 0}
       </div>
     );

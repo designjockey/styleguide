@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Type = React.PropTypes;
+const { 
+  PropTypes: Type,
+  cloneElement
+ } = React;
 
 export default React.createClass({
 
@@ -47,7 +50,7 @@ export default React.createClass({
 
   content() {
     if (this.state.isOpen) {
-      return React.cloneElement(this.props.content, {closeOverlay: this.hide});
+      return cloneElement(this.props.content);
     }
   },
 

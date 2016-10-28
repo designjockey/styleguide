@@ -25,7 +25,8 @@ class TextAreaField extends FieldBase {
   }
 
   contents() {
-    const spreadProps = omit(this.props, 'onChange');
+    //TODO: remove `spreadProps` pattern
+    const spreadProps = omit(this.props, 'onChange', 'extraClasses', 'expandable', 'errors');
 
     return <textarea
               id={this.props.name}

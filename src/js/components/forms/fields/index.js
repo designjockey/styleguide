@@ -1,4 +1,3 @@
-export { default as DateField } from './date/date';
 export { default as SelectField } from './select/select';
 export { default as SimpleSelect } from './select/simple-select';
 export { default as CheckboxField } from './checkbox';

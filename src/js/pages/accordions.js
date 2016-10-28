@@ -14,7 +14,6 @@ export default React.createClass({
   },
 
   renderToggleAccordion() {
-
     var iconClasses = [
       'mr1'
     ];
@@ -66,10 +65,7 @@ export default React.createClass({
           containerClasses={['bt', 'bw-1', 'bc-blue-25', 'px2']} >
           <p>{"Morbi elit dui, pellentesque a malesuada et, lobortis sit amet nisl. Integer purus lorem, sodales aliquam facilisis non, iaculis id nisl. Nam fringilla elementum turpis, a venenatis risus luctus ac. Ut rhoncus viverra mi, ut sodales nibh sollicitudin ut. Ut ut elit sit amet magna semper blandit. "}</p>
         </AccordionItem>
-
       </div>
     </Styleguide>
   }
 });
-
-

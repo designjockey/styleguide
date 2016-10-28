@@ -83,14 +83,15 @@ class DateField extends FieldBase {
   }
 
   triggerContent() {
-    const spreadProps = omit(this.props, 'onChange', 'defaultValue');
+    //TODO: Remove `spreadProps` pattern from codebase
+    const spreadProps = omit(this.props, 'defaultValue', 'maxDate', 'minDate', 'dateFormat', 'contextualHelp', 'errors', 'extraClasses', 'date');
 
     return (
       <div className='relative rounded-2 no-select' >
         <input className={this.inputClasses()}
                id={this.props.name}
                type="text"
-               value={this.inputValue()} 
+               value={this.inputValue()}
                {...spreadProps} />
         <span className='icon-calendar ml1 absolute'
               style={this.iconStyle()}></span>
@@ -120,8 +121,8 @@ class DateField extends FieldBase {
     return (
       <Tooltip content={this.datePicker()}
                position='top-right'
-               right='-24px'
-               top='37px' />
+               right={-24}
+               top={37} />
     );
   }
 
