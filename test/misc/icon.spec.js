@@ -40,12 +40,12 @@ describe('Icon', () => {
   });
 
   it('applies the fontSize prop as an inline style', () => {
-    let inlineStyles = icon.getAttribute('style');
+    let inlineStyles = icon.getAttribute('style').replace(/ /g, '');
     expect(inlineStyles).to.contain(`font-size:${props.size}px;`);
   });
 
   it('applies the top prop as an inline style', () => {
-    let inlineStyles = icon.getAttribute('style');
+    let inlineStyles = icon.getAttribute('style').replace(/ /g, '');
     expect(inlineStyles).to.contain(`top:${props.top}px;`);
   });
 
