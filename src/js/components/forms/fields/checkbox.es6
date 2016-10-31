@@ -62,10 +62,11 @@ class CheckboxField extends FieldBase {
     return (
       <label key={`${value}-${index}`} className="block py1">
         <input
-          defaultChecked={defaultValue.includes(value)}
-          defaultValue={defaultValue.includes(value)}
+          checked={readOnly ? defaultValue.includes(value) : null}
+          defaultChecked={!readOnly && defaultValue.includes(value)}
           readOnly={readOnly}
           type="checkbox"
+          value={value}
         />
         <span className="label-right">{label || value}</span>
       </label>
