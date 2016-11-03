@@ -15,7 +15,7 @@ class TextField extends FieldBase {
   }
 
   contents() {
-    const spreadProps = omit(this.props, 'onChange', 'extraClasses', 'errors');
+    const spreadProps = omit(this.props, 'onChange');
 
     return <input
              type="text"
