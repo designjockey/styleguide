@@ -60,16 +60,18 @@ export default React.createClass({
 
   render() {
     const {
-      label, 
+      label,
       disabled,
-      onClick
+      onClick,
+      type
     } = this.props;
 
     return <button
-      className={ this.classes() } 
+      className={ this.classes() }
       disabled={ disabled }
       label={ label }
       onClick={ onClick }
+      type={ type }
     >{ this.props.label }</button>;
   }
 });
