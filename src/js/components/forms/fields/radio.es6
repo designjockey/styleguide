@@ -31,9 +31,9 @@ class RadioField extends FieldBase {
 
     return (
       <label key={`${value}-${index}`} className="block py1">
-        <input 
+        <input
           checked={readOnly ? (defaultValue === value) : null}
-          onChange={(e) => this.handleChange(e.target.value)}
+          defaultChecked={!readOnly && defaultValue === value}
           type="radio"
           value={value}
           name={name}
@@ -62,8 +62,8 @@ class RadioField extends FieldBase {
     const spreadProps = omit(this.props, 'onChange', 'extraClasses', 'options', 'errors');
 
     return (
-      <fieldset 
-        id={this.props.name} 
+      <fieldset
+        id={this.props.name}
         onChange={(e) => this.handleChange(e.target.value)}
         ref="fieldset"
         {...spreadProps}
